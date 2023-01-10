@@ -30,3 +30,4 @@ You will push on your Git repository:
  - Add the possibility for a different group to book the same slot if there are spots left in a room after a booking. The first user to book the slot will have to check an option to specify that they accept new players to fill the remaining seats in their slot.
  - When the number of players in modified in the booking page, any supplied information disappears. We want to be able to keep filled in fields.
  - Add a page only available to admin users, where the admin can modify the details of existing rooms
+# MERN-Escape-Game
