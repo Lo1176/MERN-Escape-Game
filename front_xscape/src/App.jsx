@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Banner from './components/Banner'
 import Navbar from './components/Navbar'
 import Home from './pages/Home';
-import SignOut from "./pages/SignOut"
+import SignUp from "./pages/SignUp"
 
 function App() {
  
@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/signOut" element={<SignOut />}/>
+        <Route path="/SignUp" element={<SignUp />}/>
       </Routes>
     </div>
   )
