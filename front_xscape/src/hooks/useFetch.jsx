@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function useFetch (url, method, request={}) {
     const [loading, setLoading] = useState(null)
-    const [data, setData] =useState(null)
+    const [data, setData] = useState(null)
     const [error,setError] = useState(null)
 
     useEffect(() => {
@@ -23,16 +23,16 @@ export default function useFetch (url, method, request={}) {
           
         fetch(url, fetchParams)
             .then(res => {
-                setLoading(false)
                 return res.json()})
-            .then (dt => setData(dt))
-            .catch (err => {
-                setLoading(false)
-                setError("Une erreur est apparue :" + err)
+            .then(dt =>{ 
+                setData(dt)
+                setLoading(false);
             })
-
-        
-
+                
+            .catch (err => {
+                setError("Une erreur est apparue :" + err)
+                setLoading(false)
+            })
     }, [url])
     
     return { data, loading, error }

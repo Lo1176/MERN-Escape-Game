@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Routes, Route } from "react-router-dom";
-import Banner from './components/Banner'
 import Footer from './components/Footer';
 import Navbar from './components/Navbar'
 import Home from './pages/Home';
 import SignUp from "./pages/SignUp"
 import Room from "./components/Room";
+import SignIn from "./pages/SignIn"
 
 function App() {
  
@@ -17,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/room/:roomId" element={<Room />} />
         <Route path="/SignUp" element={<SignUp />}/>
+        <Route path="/SignIn" element={<SignIn />}/>
       </Routes>
       <Footer/>
     </div>
