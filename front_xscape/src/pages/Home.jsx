@@ -4,9 +4,8 @@ import Rooms from '../components/Rooms';
 
 const Home = () => {
     return (
-        <div>
+        <div className="">
             <Banner />
-            <h2>c'est ici les rooms</h2>
             <Rooms />
         </div>
     );
