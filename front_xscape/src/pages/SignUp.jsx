@@ -1,12 +1,11 @@
-import FormSign from "../components/forms/FormSignUp";
-import useFetch from "../hooks/useFetch";
+import FormSignUp from "../components/forms/FormSignUp";
 
 export default function SignUp({}) {
     return(
-        <div >
+        <div className="p-5" >
             <h1 className="text-center">Inscription</h1>
             <a></a>
-            <FormSign/>
+            <FormSignUp/>
         </div>
     )
 }

@@ -14,7 +14,16 @@ const Navbar = () => {
               alt="logo-brand"
             />
           </a>
-          <a href='/signout'>se connecter</a>
+
+          <div className='button'>
+            <a
+              className='btn btn-primary m-1'
+              href='/signin'>Se connecter</a>
+            <a 
+              className='btn btn-dark m-1'
+              href='/signup'>S'inscrire</a>
+          </div>
+          
         </nav>
       </div>
     );

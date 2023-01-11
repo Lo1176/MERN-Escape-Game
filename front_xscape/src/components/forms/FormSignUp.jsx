@@ -1,4 +1,4 @@
-export default function FormSign({}) {
+export default function FormSignUp({}) {
     
     return(
         <div className="form-box p-2">
