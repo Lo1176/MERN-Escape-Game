@@ -33,9 +33,6 @@ export default function useFetch (url, method, request={}) {
                 setError("Une erreur est apparue :" + err)
                 setLoading(false)
             })
-
-        
-
     }, [url])
     
     return { data, loading, error }
