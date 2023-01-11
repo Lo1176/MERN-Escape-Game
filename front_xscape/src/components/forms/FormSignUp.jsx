@@ -14,21 +14,44 @@ export default function FormSignUp({}) {
     const [birthdate, setBirthdate] = useState("")
 
 
-    function handleSubmit(e) {
+    
+    const  handleSubmit = (e) => {
         e.preventDefault()
-        const {data }= useFetch(urlSignUp,"POST", {
-            firstName:firstName,
-            lastName:lastName,
-            email: email,
-            password:password,
-            birthdate:birthdate})
-        return console.log(data);
+        let fetchParams = {
+            method: "POST",
+            mode: 'cors',
+            // cache: "no-store",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body : JSON.stringify({
+                firstName:firstName,
+                lastName:lastName,
+                email: email,
+                password:password,
+                birthdate:birthdate})
+          } 
+        fetch(urlSignUp, fetchParams)
+            .then(res => {
+                return res.json()})
+            .then(dt =>
+                console.log(dt)
+            )
+            .catch (err => console.log(err))
+        // const {data }= useFetch(urlSignUp,"POST", {
+        //     firstName:firstName,
+        //     lastName:lastName,
+        //     email: email,
+        //     password:password,
+        //     birthdate:birthdate})
+        // const {data, loading, error}=useFetch("http://localhost:5000/users","GET")
+        // console.log(data);
     }
-
+    
 
     return(
         <div className="form-box p-2">
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={handleSubmit}>
                 <div className="d-flex justify-content-between">
                     <div className="container form-group p-0">
                         <label htmlFor="firstName">Prénom</label>

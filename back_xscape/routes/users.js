@@ -22,6 +22,17 @@ const userRoutes = (app) => {
       });
   });
 
+  app.get("/users/:email", (req, res) => {
+    const email = req.params.email;
+    User.find({ email: email })
+      .then((data) => {
+        res.status(200).json(data);
+      })
+      .catch((err) => {
+          res.status(400).json({ err });
+      });
+  });
+
   app.post("/users/add", (req, res) => {
     const user= new User({
       ...req.body,
