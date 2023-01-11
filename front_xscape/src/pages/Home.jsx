@@ -1,10 +1,12 @@
 import React from 'react';
 import Banner from '../components/Banner';
+import Rooms from '../components/Rooms';
 
 const Home = () => {
     return (
-        <div>
+        <div className="">
             <Banner />
+            <Rooms />
         </div>
     );
 }
