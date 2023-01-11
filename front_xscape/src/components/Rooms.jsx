@@ -12,8 +12,6 @@ const Rooms = () => {
         <div id="rooms" className="row justify-content-center">
           {loading === false &&
             data.map((room) => (
-              // console.log(room.name)
-              // <p>{room.name}</p>
               <div key={room._id} className="card col-lg-3 m-3 col-md-4">
                 <img
                   src={room.img}
