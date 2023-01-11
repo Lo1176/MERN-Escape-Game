@@ -29,9 +29,10 @@ export default function Footer({}) {
                         </p>
                     </div>
 
-                    <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                    <div className="col-md-4 col-lg-3 col-xl-7 mx-auto mb-md-0 mb-4">
                         <p className="text-uppercase fw-bold mb-4">A propos</p>
-                        <p className="">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae, dolore quod. Vel, autem facilis? Ipsam harum quod quae error odit a nobis, autem, excepturi eaque, obcaecati repellat facilis vel nam.</p>
+                        <p className="">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vitae, dolore quod. Vel, autem facilis? Ipsam harum quod quae error odit a nobis, autem, excepturi eaque, obcaecati repellat facilis vel nam.
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Veniam aspernatur perferendis in earum commodi ut provident vero, deleniti architecto reprehenderit, laudantium praesentium, excepturi cupiditate voluptatem. Velit illo non at eaque.</p>
                     </div>
 
                 </div>
