@@ -1,12 +1,14 @@
 import React from 'react';
 import useFetch from '../hooks/useFetch';
 import logo from "./../assets/images/logo-esc.png";
+import BtnConnected from './buttons/BtnConnected';
+import BtnDisconnected from './buttons/BtnDisconnected';
 
 const Navbar = () => {
-  const url = `${process.env.DB_URL + process.env.DB_PORT}/check`
-  // const {data, loading, error} = useFetch(url,"GET")
-  console.log(process.env.DB_PORT)
-
+  const id = window.localStorage.getItem("id");
+  const URL = `http://localhost:5000/users/${id}`
+  const user = useFetch(URL, "GET")
+  // console.log(user?.data)
 
     return (
       <div>
@@ -18,17 +20,11 @@ const Navbar = () => {
               alt="logo-brand"
             />
           </a>
+          <h4 className="text-light m-0">
+            {"Bonjour " + user.data?.firstName}
+          </h4>
 
-          <p></p>
-
-          <div className='button'>
-            <a
-              className='btn btn-primary m-1'
-              href='/signin'>Se connecter</a>
-            <a 
-              className='btn btn-dark m-1'
-              href='/signup'>S'inscrire</a>
-          </div>
+          {user.data?.firstName ? <BtnDisconnected /> : <BtnConnected />}
         </nav>
       </div>
     );

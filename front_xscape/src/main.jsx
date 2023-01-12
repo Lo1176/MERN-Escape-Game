@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 // import 'bootstrap/dist/css/bootstrap.css';
 // import bootstrap from "bootstrap";
 // import dotenv from "dotenv"
-// dotenv.config({ path: "./../.env" })
+// dotenv.config({ path: "./../../.env" })
 
 
 
