@@ -42,13 +42,11 @@ const userRoutes = (app) => {
   app.post("/users/add", async (req, res) => {
     const hash = await bcrypt.hash(req.body.password, saltRounds)
 
-    const user = new User({
+    new User({
       ...req.body,
       password: hash,
       creationDate: new Date()
-    });
-
-    user 
+    })
       .save()
       .then((data)=>{
         res.status(200).json(data)
@@ -73,9 +71,32 @@ const userRoutes = (app) => {
       } else {
         res.json({status: 401, msg:'mauvais mot de passe'})
       }
-        
     }
-  
+  })
+
+  //Middlewear
+  function withAuth(req,res,next){
+    const token=req.headers['authorization']
+    if(token === null){
+      res.json({status:401, msg:"bad token"})
+    }
+    jwt.verify(token,"hereisthesecrettokeninthe.env", function(err, decoded){
+      if(err){
+        res.json({status:401,msg:"bad token", error: err})
+      }
+      req.body._id=decoded._id
+      next()
+    })
+  }
+
+  app.get('/checkToken',withAuth,(req,res) => {
+    User.findOne({_id:req.body._id})
+      .then((data) => {
+        res.status(200).json({msg:"token ok", user: data})
+      })
+      .catch((err) => {
+        res.status(400).json({err})
+      })
   })
 
   app.put("/users/:id/update", (req, res) => {
