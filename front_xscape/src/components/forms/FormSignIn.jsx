@@ -4,20 +4,30 @@ export default function FormSignIn({}) {
     const [email,setEmail] = useState("")
     const [password,setPassword] =useState("")
 
-    const urlVerification = `http://localhost:5000/users/${email}`
+    const urlVerification = `http://localhost:5000/login`
 
     const handleConnexion = async (e) => {
         e.preventDefault()
-        
-        // const data = await fetch(urlVerification)
-        //     .then(res => {
-        //         return res.json()})
-        //     .then(dt =>
-        //         console.log(dt)
-        //     )
-        //     .catch (err => console.log(err))
+        let fetchParams = {
+            method: "POST",
+            mode: 'cors',
+            // cache: "no-store",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body : JSON.stringify({
+                email : email,
+                password : password
+            })
+          } 
+        fetch(urlVerification,fetchParams)
+            .then(res => {
+                return res.json()})
+            .then(dt =>
+                window.localStorage.setItem("token", dt.token)
+            )
+            .catch (err => console.log(err))
 
-        // password === data.password ? alert("connexion réussie") : alert("connexion échouée")
     }
 
     return(
