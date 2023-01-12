@@ -16,6 +16,7 @@ export default function useFetch (url, method, request={}) {
             // cache: "no-store",
             headers: {
               "Content-Type": "application/json",
+              "authorization": window.localStorage.getItem("token")
             },
           } 
 

@@ -19,7 +19,7 @@ const userRoutes = (app) => {
 
   app.get("/users/:id", (req, res) => {
     const id = req.params.id;
-    User.find({ _id: id })
+    User.findOne({ _id: id })
       .then((data) => {
         res.status(200).json(data);
       })
