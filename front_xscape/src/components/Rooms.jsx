@@ -1,5 +1,6 @@
 import React from "react";
 import useFetch from "../hooks/useFetch";
+const pathImages = '../assets/images/'
 
 const Rooms = () => {
   // get all rooms
@@ -17,6 +18,13 @@ const Rooms = () => {
                   src={room.img}
                   className="card-img-top"
                   alt={room.name + " image"}
+                ></img>
+
+                <img
+                  // src={require('./../assets/images/PEGI_' + room.age + '.png')}
+                  src={'./../assets/images/PEGI_' + room.age + '.png'}
+                  className="pegi-image"
+                  alt={"PEGI_age_:_" + room.age}
                 ></img>
                 <div className="card-body">
                   <h5 className="card-title">{room.name}</h5>
