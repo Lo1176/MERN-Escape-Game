@@ -1,11 +1,16 @@
-import { useState } from "react"
+import { useState,  useEffect } from "react"
+// import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function FormSignIn({}) {
     const [email,setEmail] = useState("")
     const [password,setPassword] =useState("")
-
+    
     const urlVerification = `http://localhost:5000/login`
-
+    const navigate = useNavigate();
+    
     const handleConnexion = async (e) => {
         e.preventDefault()
         let fetchParams = {
@@ -23,12 +28,13 @@ export default function FormSignIn({}) {
         fetch(urlVerification,fetchParams)
             .then(res => {
                 return res.json()})
-            .then(dt =>
+            .then(dt => {
                 window.localStorage.setItem("token", dt.token)
-            )
+                // window.localStorage.getItem("token") === "token ok" &&
+                //   navigate("/");
+            })
             .catch (err => console.log(err))
-
-    }
+        }
 
     return(
         <div className="form-box p-2">

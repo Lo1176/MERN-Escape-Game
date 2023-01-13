@@ -21,7 +21,7 @@ const Navbar = () => {
             />
           </a>
           <h4 className="text-light m-0">
-            {"Bonjour " + user.data?.firstName}
+            {user.data?.firstName && "Bonjour " + user.data?.firstName}
           </h4>
 
           {user.data?.firstName ? <BtnDisconnected /> : <BtnConnected />}

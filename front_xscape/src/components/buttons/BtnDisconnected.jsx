@@ -7,7 +7,11 @@ const BtnDisconnected = () => {
               <a className="btn btn-primary m-1" href="/history">
                 Historique
               </a>
-              <a className="btn btn-dark m-1">
+              <a className="btn btn-dark m-1"
+                onClick={() => window.localStorage.clear()}
+                href="/"
+              
+              >
                 Se déconnecter
               </a>
             </div>
