@@ -12,6 +12,7 @@ export default function FormSignUp({}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [birthdate, setBirthdate] = useState("")
+    const [redirect, setRedirect] = useState(false)
 
 
     
@@ -34,9 +35,12 @@ export default function FormSignUp({}) {
         fetch(urlSignUp, fetchParams)
             .then(res => {
                 return res.json()})
-            .then(dt =>
-                console.log(dt)
-            )
+            .then(dt => {
+                if (dt.status === 200) {
+                    setRedirect(true)
+
+                }
+            })
             .catch (err => console.log(err))
         // const {data }= useFetch(urlSignUp,"POST", {
         //     firstName:firstName,
@@ -47,6 +51,10 @@ export default function FormSignUp({}) {
         // const {data, loading, error}=useFetch("http://localhost:5000/users","GET")
         // console.log(data);
     }
+    if (redirect) {
+        return (<Navigate to='/signin' />)
+    }
+
     
 
     return(

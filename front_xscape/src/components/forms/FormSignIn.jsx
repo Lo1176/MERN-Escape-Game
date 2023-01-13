@@ -1,15 +1,19 @@
-import { useState,  useEffect } from "react"
+import React, { useState,  useContext } from "react"
 // import { redirect } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
+import {UserContext} from '../context/UserContext'
 
 
 
 export default function FormSignIn({}) {
     const [email,setEmail] = useState("")
-    const [password,setPassword] =useState("")
+    const [password,setPassword] = useState("")
+    const [redirect, setRedirect] = useState()
+    const {user, setUser} = useContext(UserContext)
+
     
     const urlVerification = `http://localhost:5000/login`
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     
     const handleConnexion = async (e) => {
         e.preventDefault()
@@ -20,21 +24,36 @@ export default function FormSignIn({}) {
             headers: {
               "Content-Type": "application/json",
             },
-            body : JSON.stringify({
-                email : email,
-                password : password
+            body: JSON.stringify({
+                email: email,
+                password: password
             })
           } 
         fetch(urlVerification,fetchParams)
             .then(res => {
                 return res.json()})
             .then(dt => {
-                window.localStorage.setItem("token", dt.token)
-                // window.localStorage.getItem("token") === "token ok" &&
-                //   navigate("/");
+                if (dt.status === 200) {
+                    console.log("----------")
+                    console.log("FormSignIn.jsx :")
+                    console.log(dt)
+                    console.log("----------")
+                    window.localStorage.setItem("token", dt.token)
+                    setUser({
+                        isLogged: true,
+                        infos: dt.user._id,
+                        firstName: dt.user.firstName
+                    })
+                    setRedirect(true)
+                }
             })
             .catch (err => console.log(err))
-        }
+    }
+
+    if (redirect) {
+        return(<Navigate to='/' />)
+    }
+
 
     return(
         <div className="form-box p-2">
