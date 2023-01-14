@@ -9,7 +9,6 @@ export default function RequireAuth({ children, withAuth }) {
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
-    console.log("token " + token);
     if (token !== null) {
       fetch("http://localhost:5000/checkToken", {
         method: "GET",
@@ -19,32 +18,32 @@ export default function RequireAuth({ children, withAuth }) {
           return res.json();
         })
         .then((res) => {
-        //   console.log("------------")  
-        //   console.log("requireAuth :")
-        //   console.log(res);
-        //   console.log("------------")
-          if (res.status === 200) {
+          if (res.msg === "token ok") {
             setUser({
               isLogged: true,
               infos: res.user
             });
-          } else {
-            setRedirect(true);
+          }else {
+            setRedirect(true)
           }
         })
-        // .catch((err) => {
-        //   console.log(err);
-        // });
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
         if (withAuth) {
             setRedirect(true);
         }
     }
   }, []);
+
   if (redirect) {
     return <Navigate to="/signin" />;
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+    </>)
 };
 

@@ -22,7 +22,7 @@ const Rooms = () => {
 
                 <img
                   // src={require('./../assets/images/PEGI_' + room.age + '.png')}
-                  src={'./../assets/images/PEGI_' + room.age + '.png'}
+                  src={'./../assets/images/PEGI_18.png'}
                   className="pegi-image"
                   alt={"PEGI_age_:_" + room.age}
                 ></img>

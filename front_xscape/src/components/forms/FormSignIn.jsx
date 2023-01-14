@@ -34,15 +34,10 @@ export default function FormSignIn({}) {
                 return res.json()})
             .then(dt => {
                 if (dt.status === 200) {
-                    console.log("----------")
-                    console.log("FormSignIn.jsx :")
-                    console.log(dt)
-                    console.log("----------")
                     window.localStorage.setItem("token", dt.token)
                     setUser({
                         isLogged: true,
-                        infos: dt.user._id,
-                        firstName: dt.user.firstName
+                        infos: dt.user
                     })
                     setRedirect(true)
                 }

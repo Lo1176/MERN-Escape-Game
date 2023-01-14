@@ -6,7 +6,6 @@ import { UserContext } from './context/UserContext';
 
 const Navbar = () => {
   const {user, setUser} = useContext(UserContext)
-  console.log("user " + JSON.stringify(user));
 
     return (
       <div>
@@ -19,7 +18,7 @@ const Navbar = () => {
             />
           </a>
           <h4 className="text-light m-0">
-            {user.isLogged && "Bonjour " + user?.firstName}
+            {user.isLogged && "Bonjour " + user?.infos.firstName}
           </h4>
 
           {user.isLogged ? <BtnDisconnected /> : <BtnConnected />}
