@@ -2,10 +2,8 @@ import { useState } from "react"
 import useFetch from "../../hooks/useFetch"
 
 export default function FormSignUp({}) {
-    // const urlSignUp = `http://localhost:${process.env.DB_port}/users/add`
 
     const urlSignUp = `http://localhost:5000/users/add`
-    // const urlVerification = `http://localhost:5000/users`
 
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
@@ -42,20 +40,10 @@ export default function FormSignUp({}) {
                 }
             })
             .catch (err => console.log(err))
-        // const {data }= useFetch(urlSignUp,"POST", {
-        //     firstName:firstName,
-        //     lastName:lastName,
-        //     email: email,
-        //     password:password,
-        //     birthdate:birthdate})
-        // const {data, loading, error}=useFetch("http://localhost:5000/users","GET")
-        // console.log(data);
     }
     if (redirect) {
         return (<Navigate to='/signin' />)
     }
-
-    
 
     return(
         <div className="form-box p-2">
