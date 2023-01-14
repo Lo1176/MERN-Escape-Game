@@ -13,7 +13,7 @@ const bookingRoutes = (app) => {
 
     app.get("/booking/:roomId", (req, res) => {
         const roomId = req.params.roomId;
-        Booking.find({ roomId: roomId })
+        Booking.findOne({ roomId: roomId })
             .then((data) => {
                 res.status(200).json(data);
             })

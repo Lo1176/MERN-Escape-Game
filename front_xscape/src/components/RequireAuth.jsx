@@ -23,9 +23,11 @@ export default function RequireAuth({ children, withAuth }) {
               isLogged: true,
               infos: res.user
             });
-          }else {
+          }else if (res.msg === "bad token") {
+            alert ('Veuillez vous reconnecter')
+          } else (
             setRedirect(true)
-          }
+          )
         })
         .catch((err) => {
           console.log(err);
@@ -35,7 +37,7 @@ export default function RequireAuth({ children, withAuth }) {
             setRedirect(true);
         }
     }
-  }, []);
+  }, [user]);
 
   if (redirect) {
     return <Navigate to="/signin" />;
