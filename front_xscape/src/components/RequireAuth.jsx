@@ -24,7 +24,8 @@ export default function RequireAuth({ children, withAuth }) {
               infos: res.user
             });
           }else if (res.msg === "bad token") {
-            alert ('Veuillez vous reconnecter')
+            localStorage.removeItem('token')
+            setRedirect(true)
           } else (
             setRedirect(true)
           )

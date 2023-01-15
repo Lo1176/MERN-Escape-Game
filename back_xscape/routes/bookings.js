@@ -36,15 +36,30 @@ const bookingRoutes = (app) => {
           })
         })
 
-    app.put("/bookings/:roomId/update", (req, res) => {
+    app.put("/bookings/:roomId/:day/:daytime/update", (req, res) => {
         const roomId = req.params.roomId;
-        Booking.updateOne({roomId : roomId}, {...req.body})
-          .then((data) => {
-            res.status(200).json({ message: "Données booking modifiées"});
-          })
-          .catch((err) => {
-              res.status(400).json({ err });
-          });
+        const day= req.params.day
+        const daytime = req.params.daytime
+        if (daytime === "AM"){
+          Booking.updateOne({roomId : roomId, 'calendar.day' : day}, {"calendar.$.time.AM": {...req.body}})
+            .then((data) => {
+              res.status(200).json({ message: "Données booking modifiées"});
+            })
+            .catch((err) => {
+                res.status(400).json({ err });
+            });
+        }else if (daytime === "PM"){
+          Booking.updateOne({roomId : roomId, 'calendar.day' : day}, {"calendar.$.time.PM": {...req.body}})
+            .then((data) => {
+              res.status(200).json({ message: "Données booking modifiées"});
+            })
+            .catch((err) => {
+                res.status(400).json({ err });
+            });
+        }else {
+          res.status(404)
+        }
+        
       });
 }
 

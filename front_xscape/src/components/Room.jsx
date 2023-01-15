@@ -1,20 +1,62 @@
 import React from 'react';
 import useFetch from '../hooks/useFetch';
-import {useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './context/UserContext';
+import { useState } from 'react';
 
 const Room = () => {
+    const {user, setUser}= useContext(UserContext)
+    const [redirect, setRedirect] = useState(false)
+
     const {roomId} = useParams() 
     const url = `http://localhost:5000/rooms/${roomId}` ; 
     const {data, loading, error} = useFetch(url,"GET");
 
-    const {user, setUser}= useContext(UserContext)
 
     const urlReservation = `http://localhost:5000/booking/${roomId}`
     const reservation = useFetch(urlReservation, "GET")
 
-      
+    function handleReservation(day,time){
+
+
+        if (user.isLogged){const urlReserver = `http://localhost:5000/bookings/${roomId}/${day}/${time}/update`
+
+        const fetchParams= {
+            method:"PUT",
+            mode: 'cors',
+            // cache: "no-store",
+            headers: {
+              "Content-Type": "application/json",
+              "authorization": window.localStorage.getItem("token")
+            },
+            body : JSON.stringify({
+                reserved : true,
+                userId : user.infos._id
+            })
+          } 
+
+          
+        fetch(urlReserver, fetchParams)
+            .then(res => {
+                return res.json()})
+            .then(dt =>{ 
+                setRedirect(true)
+            })
+            .catch (err => {
+                console.log(err)
+            })
+        } else {
+            setRedirect(true)
+        }
+    }
+
+    if(user.isLogged && redirect){
+        return <Navigate to="/history"/>
+    } else if (redirect){
+        return <Navigate to ="/signin"/>
+    }
+
     return (
         <>
         {
@@ -33,13 +75,21 @@ const Room = () => {
                                             <h6 className='text-center'>{reservation.day}</h6>
                                             <button 
                                                 key= {reservation.day + "AM"}
-                                                className='btn btn-dark m-1' 
-                                                style= {{minWidth: "100px"}}>Matin
+                                                className='btn btn-green m-1' 
+                                                style= {{minWidth: "100px"}}
+                                                disabled={reservation.time.AM.reserved}
+                                                onClick={(e) => handleReservation(reservation.day, "AM")}
+                                            > 
+                                                Matin
                                             </button>
                                             <button 
                                                 key= {reservation.day + "PM"}
-                                                className='btn btn-dark m-1' 
-                                                style= {{minWidth: "100px"}}>Aprem
+                                                className='btn btn-green m-1' 
+                                                style= {{minWidth: "100px"}}
+                                                disabled={reservation.time.PM.reserved}
+                                                onClick={(e) => handleReservation(reservation.day, "PM")}
+                                            > 
+                                                Aprem
                                             </button>
                                         </div>
                                         )
