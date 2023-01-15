@@ -23,9 +23,12 @@ export default function RequireAuth({ children, withAuth }) {
               isLogged: true,
               infos: res.user
             });
-          }else {
+          }else if (res.msg === "bad token") {
+            localStorage.removeItem('token')
             setRedirect(true)
-          }
+          } else (
+            setRedirect(true)
+          )
         })
         .catch((err) => {
           console.log(err);
@@ -35,7 +38,7 @@ export default function RequireAuth({ children, withAuth }) {
             setRedirect(true);
         }
     }
-  }, []);
+  }, [user]);
 
   if (redirect) {
     return <Navigate to="/signin" />;
