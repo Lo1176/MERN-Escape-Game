@@ -7,7 +7,7 @@ const BtnConnected = () => {
               <a className="btn btn-primary m-1" href="/signin">
                 Se connecter
               </a>
-              <a className="btn btn-dark m-1" href="/signup">
+              <a className="btn btn-secondary m-1" href="/signup">
                 S'inscrire
               </a>
             </div>

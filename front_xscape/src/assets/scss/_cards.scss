@@ -5,6 +5,21 @@
             height: 168px;
             object-fit: cover;
         }
+        .rooms__pegi-img {
+            width: 2em;
+            // position: absolute;
+            // top: 7.85em;
+            // right: 0;
+        }
     }
+}
 
+#room {
+    .room__pegi-img {
+        width: 6em;
+        position: absolute;
+        top: 28.5em;
+        right: 0;
+
+    }
 }

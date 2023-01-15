@@ -16,14 +16,14 @@ export default function Footer({}) {
 
             <div className="col-lg-3 mt-2 text-left">
               <p>
-                <a href="" className="text-primary">
+                <a href="" className="text-light">
                   5 rue du Faubourg Saint Honoré
                 </a>
               </p>
               <p>75008, Paris</p>
               <p>+33 1 42 92 81 00</p>
               <p>
-                <a href="" className="text-primary">
+                <a href="" className="text-light">
                   contact@Xscape.com
                 </a>
               </p>

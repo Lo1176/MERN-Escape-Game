@@ -1,4 +1,10 @@
-.btn-green{
-    background-color:rgb(28, 91, 28);
-    color: white
+.btn-green {
+    // background-color:rgb(28, 91, 28);
+    // background-color: $turquoise-green;
+    background-color: $pine-green;
+    color: white;
+    &:hover {
+        background-color: $light-pine-green;
+
+    }
 }
