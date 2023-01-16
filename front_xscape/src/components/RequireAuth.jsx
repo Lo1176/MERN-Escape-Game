@@ -32,10 +32,8 @@ export default function RequireAuth({ children, withAuth }) {
         .catch((err) => {
           console.log(err);
         });
-    } else {
-        if (withAuth) {
-            setRedirect(true);
-        }
+    } else if (withAuth) {
+        setRedirect(true);
     }
   }, []);
 

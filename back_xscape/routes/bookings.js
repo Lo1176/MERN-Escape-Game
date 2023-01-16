@@ -61,29 +61,16 @@ const bookingRoutes = (app) => {
         }
       });
 
-      app.get("/history/:userId", (req, res) => {
-        const userId = req.params.userId;
-        let history = []
-        Booking.find({ userId : userId })
-            .then((data) => {
-              // data.map((room) => {
-              //   room.calendar.map((day) => {
-              //     if (day.time.AM.userId === userId){
-              //     history.push()
-              //     // console.log(history)
-              //   } else if (day.time.PM.userId === userId){
-              //     history.push(data.calendar.time)
-              //   }
-              //   })
-              // })
-              //   // console.log(history)
-              //   // res.json(history)
-                res.status(200).json(data);
-            })
-            .catch((err) => {
-                res.status(400).json({err: err});
-            });
-    })
+      app.get("/history/:userId", (req,res) =>{
+        const userId = req.params.userId
+        Booking.find({"calendar.time.AM.userId" : userId})
+          .then((data) => {
+            res.status(200).json(data);
+          })
+          .catch((err) => {
+              res.status(400).json({ err });
+          });
+      })
 }
 
 export default bookingRoutes
