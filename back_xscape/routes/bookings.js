@@ -61,7 +61,16 @@ const bookingRoutes = (app) => {
         }
       });
 
-      
+      app.get("/history/:userId", (req,res) =>{
+        const userId = req.params.userId
+        Booking.find({"calendar.time.AM.userId" : userId})
+          .then((data) => {
+            res.status(200).json(data);
+          })
+          .catch((err) => {
+              res.status(400).json({ err });
+          });
+      })
 }
 
 export default bookingRoutes
