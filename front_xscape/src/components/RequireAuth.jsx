@@ -37,7 +37,7 @@ export default function RequireAuth({ children, withAuth }) {
             setRedirect(true);
         }
     }
-  }, [user]);
+  }, []);
 
   if (redirect) {
     return <Navigate to="/signin" />;
