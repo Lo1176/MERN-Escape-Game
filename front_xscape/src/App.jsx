@@ -7,7 +7,6 @@ import Room from "./components/Room";
 import SignIn from "./pages/SignIn";
 import History from "./pages/History";
 import RequireAuth from "./components/RequireAuth";
-import History from "./pages/History";
 
 function App() {
   return (

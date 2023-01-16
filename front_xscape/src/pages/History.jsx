@@ -6,6 +6,7 @@ export default function History({}) {
     const [loading, setLoading] = useState(null)
     const [data, setData] = useState([])
     const [error,setError] = useState(null)
+    const [room, setRoom] = useState()
 
     useEffect(() => {
         setLoading("Loading...")
@@ -30,26 +31,46 @@ export default function History({}) {
 
     }, [user])
     
-    
+    function roomName(id){
+        const url = `http://localhost:5000/rooms/${id}`
+        fetch(url)
+            .then(res => {
+                return res.json()
+            })
+            .then(dt => 
+                setRoom(dt[0].name)
+            )
+            .catch (err => {
+                err
+            })
+        return room
+    }
     
     
     return(
         <>
             {user.isLogged && user.infos !== null &&
-                <div>
+                <div className="text-center">
                     <h1 className="m-3">Historique de {user.infos.firstName} {user.infos.lastName}:</h1>
-                    {!loading && data.map((room) => {
+                    {!loading && data.map((room) => 
                         room.calendar.map((day) => {
-                            // console.log(room.roomId)
-                            // console.log(day.time.AM.userId)
-                           (day.time.AM.userId === user.infos.id) && console.log("oui")
-                            // setData([...data, {room: room.roomId, day : day.time}])
-                            
-                        //  else if (day.time.PM.userId === user.infos.id)&&
-                        //     // setData([...data, {room: room.roomId, day : day.time}])
-                        // }
+                            if (day.time.AM.userId === user.infos._id) {
+                                return (
+                                    <div>
+                                        <h2>{roomName(room.roomId)}</h2>
+                                        <p>{day.day}, le matin</p>
+                                    </div>
+                                )
+                            } else if (day.time.PM.userId === user.infos._id){
+                                return (
+                                    <div>
+                                        <h2>{roomName(room.roomId)}</h2>
+                                        <p>{day.day}, l'après-midi</p>
+                                    </div>
+                                )
+                            }
                         })
-                      })}
+                    )}
                 </div>
             }
         </>
