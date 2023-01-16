@@ -7,6 +7,7 @@ export default function History({}) {
     const [loading, setLoading] = useState(null)
     const [data, setData] = useState([])
     const [error,setError] = useState(null)
+    const [room, setRoom] = useState()
 
     useEffect(() => {
         setLoading("Loading...")
@@ -31,8 +32,20 @@ export default function History({}) {
 
     }, [user])
     
-    
-    
+    function roomName(id){
+        const url = `http://localhost:5000/rooms/${id}`
+        fetch(url)
+            .then(res => {
+                return res.json()
+            })
+            .then(dt => 
+                setRoom(dt[0].name)
+            )
+            .catch (err => {
+                err
+            })
+        return room
+    }
     
     return (
       <>
@@ -49,9 +62,6 @@ export default function History({}) {
                   room.calendar.map((day) => {
                     {console.log(day.time.AM.userId);}
                     {console.log(user.infos._id);}
-                  // console.log(room.roomId)
-                  // console.log(day.time.AM.userId)
-                //   return <h2>{user.infos._id}</h2>;
                   if (day.time.AM.userId === user.infos._id) return <p>{day?.time.AM.userId}</p>;
                   // setData([...data, {room: room.roomId, day : day.time}])
 
@@ -64,4 +74,5 @@ export default function History({}) {
         )}
       </>
     );
+
 }
