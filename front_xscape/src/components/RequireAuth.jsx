@@ -25,7 +25,6 @@ export default function RequireAuth({ children, withAuth }) {
             });
           }else if (res.msg === "bad token") {
             localStorage.removeItem('token')
-            setRedirect(true)
           } else (
             setRedirect(true)
           )

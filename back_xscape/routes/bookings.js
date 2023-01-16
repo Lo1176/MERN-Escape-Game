@@ -59,8 +59,9 @@ const bookingRoutes = (app) => {
         }else {
           res.status(404)
         }
-        
       });
+
+      
 }
 
 export default bookingRoutes

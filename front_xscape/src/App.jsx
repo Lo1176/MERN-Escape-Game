@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp";
 import Room from "./components/Room";
 import SignIn from "./pages/SignIn";
 import RequireAuth from "./components/RequireAuth";
+import History from "./pages/History";
 
 function App() {
   return (
@@ -41,6 +42,14 @@ function App() {
           element={
             <RequireAuth withAuth={false}>
               <SignIn />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/History"
+          element={
+            <RequireAuth withAuth={false}>
+              <History />
             </RequireAuth>
           }
         />
