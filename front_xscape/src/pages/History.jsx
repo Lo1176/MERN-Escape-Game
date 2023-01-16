@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from "react"
+import HistoryCards from "../components/cards/HistoryCards"
 import { UserContext } from "../components/context/UserContext"
 
 export default function History({}) {
@@ -33,25 +34,34 @@ export default function History({}) {
     
     
     
-    return(
-        <>
-            {user.isLogged && user.infos !== null &&
-                <div>
-                    <h1 className="m-3">Historique de {user.infos.firstName} {user.infos.lastName}:</h1>
-                    {!loading && data.map((room) => {
-                        room.calendar.map((day) => {
-                            // console.log(room.roomId)
-                            // console.log(day.time.AM.userId)
-                           (day.time.AM.userId === user.infos.id) && console.log("oui")
-                            // setData([...data, {room: room.roomId, day : day.time}])
-                            
-                        //  else if (day.time.PM.userId === user.infos.id)&&
-                        //     // setData([...data, {room: room.roomId, day : day.time}])
-                        // }
-                        })
-                      })}
-                </div>
-            }
-        </>
-    )
+    return (
+      <>
+        {user.isLogged && user.infos !== null && (
+            <div>
+            <h2 className="text-center m-3">
+              Voici votre historique de réservation
+            </h2>
+            <HistoryCards />
+            {!loading &&
+            
+              data.map((room) => {
+                return (
+                  room.calendar.map((day) => {
+                    {console.log(day.time.AM.userId);}
+                    {console.log(user.infos._id);}
+                  // console.log(room.roomId)
+                  // console.log(day.time.AM.userId)
+                //   return <h2>{user.infos._id}</h2>;
+                  if (day.time.AM.userId === user.infos._id) return <p>{day?.time.AM.userId}</p>;
+                  // setData([...data, {room: room.roomId, day : day.time}])
+
+                  //  else if (day.time.PM.userId === user.infos.id)&&
+                  //     // setData([...data, {room: room.roomId, day : day.time}])
+                  // }
+                }));
+              })}
+          </div>
+        )}
+      </>
+    );
 }

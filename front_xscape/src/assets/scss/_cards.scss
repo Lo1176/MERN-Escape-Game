@@ -18,8 +18,24 @@
     .room__pegi-img {
         width: 6em;
         position: absolute;
-        top: 28.5em;
+        // top: 28.5em;
         right: 0;
 
+    }
+}
+
+.history-cards {
+    .card {
+        min-width: 480px;
+
+        
+        img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin: 1em;
+            border-radius: 4px;
+    
+        }
     }
 }
